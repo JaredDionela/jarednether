@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jared Nether D. Dionela — Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Jared Nether D. Dionela — IT graduate specializing in enterprise database management, SAP/ERP reporting, and full-stack development.">
+
+  <!-- fonts: Space Grotesk (headings), Inter (body), JetBrains Mono (accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════ -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">JD</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <!-- icon swapped by JS -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       HERO
+       ═══════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-label mono">// portfolio</p>
+        <h1>Jared Nether<br>D. Dionela</h1>
+        <p class="hero-tagline">I build reliable data systems and occasionally explore AI/ML on the side.</p>
+        <div class="typewriter-line" aria-live="polite">
+          <span id="typewriterText"></span><span class="cursor"></span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="Resume-Jared Nether D. Dionela.pdf" download class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Résumé
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       ABOUT + SKILLS + CERTIFICATIONS
+       ═══════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label mono">// about</p>
+        <h2 class="section-title">A bit about me</h2>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- About card — spans 2 cols -->
+        <div class="bento-card span-2 reveal">
+          <div class="about-bio">
+            <p>
+              I'm a BS Information Technology graduate from Mapúa University, specializing in
+              Enterprise Database Management. I've completed two internships — one in SAP/ERP
+              reporting at RCD Land Inc., and one in full-stack web development at ARIVA Academy.
+            </p>
+            <p>
+              At RCD Land, I built automated Crystal Reports on SAP Business One that are now used
+              as standard billing and finance reports across departments. At ARIVA, I co-developed
+              TimeIntern, a production time-tracking web app with React, TypeScript, and Supabase.
+            </p>
+            <p>
+              I care about writing clean queries, building systems that people actually use, and
+              learning something new every week.
+            </p>
+          </div>
+          <div class="about-details">
+            <div>
+              <div class="about-detail-label">University</div>
+              <div class="about-detail-value">Mapúa University</div>
+            </div>
+            <div>
+              <div class="about-detail-label">Degree</div>
+              <div class="about-detail-value">BS Information Technology</div>
+            </div>
+            <div>
+              <div class="about-detail-label">Specialization</div>
+              <div class="about-detail-value">Enterprise Database Management</div>
+            </div>
+            <div>
+              <div class="about-detail-label">Graduation</div>
+              <div class="about-detail-value">2026</div>
+            </div>
+            <div>
+              <div class="about-detail-label">Location</div>
+              <div class="about-detail-value">Metro Manila, Philippines</div>
+            </div>
+          </div>
+          <p class="about-currently">
+            Currently: Open to full-time roles in database administration, enterprise systems,
+            or full-stack development.
+          </p>
+        </div>
+
+        <!-- Database & Enterprise Skills card -->
+        <div class="bento-card reveal">
+          <h3 class="skills-card-title">Database & Enterprise</h3>
+          <div class="skill-tags">
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>SQL</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>PostgreSQL</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>Oracle Database</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>SAP Business One</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>Crystal Reports</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>Python</span>
+          </div>
+          <div class="skill-legend">
+            <span class="legend-item"><span class="tier-dot" style="background:var(--accent-muted)"></span>Proficient</span>
+            <span class="legend-item"><span class="tier-dot" style="background:rgba(145,139,126,0.5)"></span>Familiar</span>
+            <span class="legend-item"><span class="tier-dot" style="background:rgba(145,139,126,0.25)"></span>Learning</span>
+          </div>
+        </div>
+
+        <!-- Frontend & Tools Skills card -->
+        <div class="bento-card reveal">
+          <h3 class="skills-card-title">Frontend & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>React</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>TypeScript</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>Supabase</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>Node.js</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>Vite</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>Tailwind CSS</span>
+            <span class="skill-pill tier-proficient"><span class="tier-dot"></span>Git</span>
+            <span class="skill-pill tier-familiar"><span class="tier-dot"></span>REST APIs</span>
+            <span class="skill-pill tier-learning"><span class="tier-dot"></span>Vercel</span>
+          </div>
+        </div>
+
+        <!-- Certifications card — spans 2 cols -->
+        <div class="bento-card span-2 reveal">
+          <h3 class="skills-card-title">Certifications</h3>
+
+          <div class="cert-item">
+            <div class="cert-icon">🤖</div>
+            <div>
+              <div class="cert-name">AI Fundamentals</div>
+              <div class="cert-meta">Google · Apr 2026 · ID: 5KL95ZZABTEK</div>
+              <a href="#" class="cert-verify">Verify →</a><!-- TODO: Replace with actual verification URL -->
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-icon">🗄️</div>
+            <div>
+              <div class="cert-name">Oracle Database Administration from Zero to Hero</div>
+              <div class="cert-meta">Packt · Jun 2025 · ID: 4IPMIZOQ9G48</div>
+              <a href="#" class="cert-verify">Verify →</a><!-- TODO: Replace with actual verification URL -->
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-icon">📋</div>
+            <div>
+              <div class="cert-name">Software Development Processes & Methodologies</div>
+              <div class="cert-meta">University of Minnesota · Feb 2025 · ID: MO92W4WJOD9A</div>
+              <a href="#" class="cert-verify">Verify →</a><!-- TODO: Replace with actual verification URL -->
+            </div>
+          </div>
+
+          <div class="cert-item cert-placeholder">
+            <div class="cert-icon">➕</div>
+            <div>
+              <div class="cert-name">More certifications in progress</div>
+              <div class="cert-meta">Open slot</div>
+            </div>
+          </div>
+
+          <div class="cert-item cert-placeholder">
+            <div class="cert-icon">➕</div>
+            <div>
+              <div class="cert-name">More certifications in progress</div>
+              <div class="cert-meta">Open slot</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- .bento-grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PROJECTS
+       ═══════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label mono">// projects</p>
+        <h2 class="section-title">What I've built</h2>
+      </div>
+      <div class="projects-filter reveal" id="projectsFilter">
+        <!-- filter buttons rendered by main.js -->
+      </div>
+      <div class="projects-grid reveal" id="projectsGrid">
+        <!-- project cards rendered by main.js from content.js data -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PERSONALITY CARDS (strand B)
+       ═══════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label mono">// side notes</p>
+        <h2 class="section-title">Beyond the code</h2>
+      </div>
+      <div class="personality-grid reveal">
+
+        <div class="personality-card">
+          <div class="personality-icon">🧪</div>
+          <h3 class="personality-title">GenAI Research</h3>
+          <p class="personality-note">
+            I've been exploring Google AI Studio and prompt engineering as a side interest —
+            experimenting with how large language models can assist in data workflows and
+            report generation. Not a project, just a growing curiosity.
+          </p>
+        </div>
+
+        <div class="personality-card">
+          <div class="personality-icon">🎵</div>
+          <h3 class="personality-title">Music Production</h3>
+          <p class="personality-note">
+            R&B / Trapsoul producer and audio engineer in my downtime. It's how I unwind —
+            different kind of problem-solving.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       EXPERIENCE
+       ═══════════════════════════════════ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label mono">// experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+      </div>
+
+      <div class="timeline reveal">
+
+        <!-- RCD Land — most recent first -->
+        <div class="timeline-entry">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-role">IT Specialist Intern</div>
+                <div class="timeline-company">RCD Land Inc. · Metro Manila</div>
+              </div>
+              <span class="timeline-date mono">Mar 2026 – Jun 2026</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Built 10+ automated Crystal Reports in SAP Business One, adopted as standard departmental reports for billing, collections, and financial tracking</li>
+              <li>Wrote and optimized SQL queries joining multiple SAP B1 tables to produce consolidated reports, reducing reliance on manual spreadsheets</li>
+              <li>Managed the full report lifecycle: SQL query development → layout design → testing against live data → handoff to department end-users</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="project-tag">SAP B1</span>
+              <span class="project-tag">Crystal Reports</span>
+              <span class="project-tag">SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARIVA Academy -->
+        <div class="timeline-entry">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-role">IT & Software Development Intern</div>
+                <div class="timeline-company">ARIVA Academy Philippines, Inc. · Metro Manila · Hybrid</div>
+              </div>
+              <span class="timeline-date mono">Oct 2025 – Jan 2026</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Co-developed TimeIntern, a full-stack intern time-tracking web app with React 18, TypeScript, Tailwind CSS, Vite, and Supabase (PostgreSQL)</li>
+              <li>Implemented QR-code-based clock-in/out, a real-time attendance dashboard, automatic salary computation, and CSV payroll exports</li>
+              <li>Designed the PostgreSQL schema and wrote Supabase RPC functions for business logic, Row Level Security policies, and real-time data subscriptions</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Supabase</span>
+              <span class="project-tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- .timeline -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CONTACT
+       ═══════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label mono">// contact</p>
+        <h2 class="section-title">Get in touch</h2>
+      </div>
+
+      <div class="contact-grid reveal">
+
+        <!-- Contact form -->
+        <!-- (Formspree setup: create a form at formspree.io and replace YOUR_FORM_ID below) -->
+        <div class="contact-form-card">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <!-- TODO: Replace YOUR_FORM_ID with the real endpoint from formspree.io -->
+            <div class="form-group">
+              <label class="form-label" for="contactName">Name</label>
+              <input class="form-input" type="text" id="contactName" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactEmail">Email</label>
+              <input class="form-input" type="email" id="contactEmail" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Message</label>
+              <textarea class="form-textarea" id="contactMessage" name="message" required placeholder="What's on your mind?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Contact info -->
+        <div class="contact-info-card">
+          <p class="contact-reach">
+            I'm currently looking for my first full-time role. If you think I'd be a
+            good fit for your team, I'd love to hear from you.
+          </p>
+          <div class="contact-email-row">
+            <span class="contact-email mono">jrdnther@gmail.com</span>
+            <button class="copy-email-btn mono" id="copyEmailBtn">Copy</button>
+          </div>
+          <div class="contact-socials">
+            <a href="https://github.com/JaredDionela" class="social-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/jared-nether-2209ab2bb/" class="social-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-text">© 2026 Jared Nether D. Dionela · Built with HTML, CSS & JS</p>
+        <a href="#hero" class="back-to-top">↑ Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
+
