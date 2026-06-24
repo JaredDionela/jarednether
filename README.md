@@ -1,72 +1,24 @@
 # Jared Nether D. Dionela — Portfolio
 
-Personal portfolio site built with vanilla HTML, CSS, and JavaScript.  
-Charcoal + taupe bento grid design — no frameworks, no build step.
+Welcome to the personal portfolio site of Jared Nether D. Dionela, built with vanilla HTML, CSS, and JavaScript.  
+This project showcases my background in Enterprise Database Management, SAP/ERP reporting, and full-stack development, using a sleek charcoal and taupe bento-grid design.
 
 ---
 
-## Local Setup
+## Overview
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/JaredDionela/portfolio.git
-   cd portfolio
-   ```
+- **Dynamic Content**: Project cards and metadata are effortlessly managed via `content.js` without directly editing HTML structure.
+- **Bento-Grid Layout**: A responsive, modular layout powered by modern CSS Grid.
+- **Scroll Animations**: Smooth reveal animations using the native IntersectionObserver API.
+- **Theming**: Integrated dark and light mode toggle with state persistence via `localStorage`.
+- **Contact Integration**: An AJAX-powered contact form that submits seamlessly in the background via FormSubmit.
 
-2. Open `index.html` in your browser. That's it — no build step needed.
+## Tech Stack
 
-   Or use a local server (recommended for Formspree):
-   ```bash
-   npx serve .
-   ```
-
----
-
-## How to Deploy
-
-### GitHub Pages (recommended)
-
-1. Push to a `gh-pages` branch, or serve from the repo root on the `main` branch.
-2. In your repo settings → Pages → set source to the branch/folder you chose.
-3. Your site will be live at `https://<username>.github.io/<repo-name>/`.
-
-### Vercel (alternative)
-
-1. Import the repo into [Vercel](https://vercel.com).
-2. It auto-detects static sites — no config needed.
-3. Done.
-
----
-
-## How to Swap In Real Content
-
-### Projects
-Open `content.js` and edit the `projects` array. Each project is one object:
-
-```js
-{
-  id: "my-new-project",
-  title: "Project Name",
-  description: "What it does...",
-  tags: ["SQL", "Backend"],
-  github: "https://github.com/...",
-  live: "https://...",
-  status: "Completed",
-  featured: false,
-}
-```
-
-Add your object to the array → the card appears automatically. No HTML editing needed.
-
-### Résumé
-Replace `Resume-Jared Nether D. Dionela.pdf` with your updated file. Keep the same filename, or update the `href` in the hero section of `index.html`.
-
-### Contact Form
-1. Create a free form at [formspree.io](https://formspree.io).
-2. Replace `YOUR_FORM_ID` in the `<form action="...">` in `index.html` with your real Formspree endpoint.
-
-### Images
-Drop project screenshots into the `assets/images/` folder and reference them in your project objects or HTML.
+- **HTML/CSS/JS** — Clean vanilla code with no frameworks or build tools required.
+- **CSS Grid & Flexbox** — Modern, responsive layouts.
+- **IntersectionObserver** — For performant scroll animations.
+- **Fetch API** — For background form submissions.
 
 ---
 
@@ -76,24 +28,16 @@ Drop project screenshots into the `assets/images/` folder and reference them in 
 portfolio/
 ├── index.html          ← main page
 ├── style.css           ← design system (charcoal + taupe bento)
-├── main.js             ← interactive features (typewriter, dark mode, filter, etc.)
+├── main.js             ← interactive features (animations, theme, form handling)
 ├── content.js          ← data-driven content (projects array, hero roles)
 ├── 404.html            ← custom 404 page
-├── Resume-*.pdf        ← downloadable résumé
-├── assets/
-│   └── images/         ← project screenshots (add yours here)
+├── instructions.md     ← setup, deployment, and customization guide
 └── README.md           ← you are here
 ```
 
 ---
 
-## Tech
-
-- **HTML/CSS/JS** — no frameworks, no build tools
-- **CSS Grid** — bento-style responsive layout
-- **IntersectionObserver** — scroll reveal animations
-- **localStorage** — dark/light mode persistence
-- **Formspree** — contact form (no backend needed)
+*For detailed instructions on how to set up, customize, or deploy this project locally, please see the [instructions.md](instructions.md) guide.*
 
 ---
 
