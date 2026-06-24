@@ -255,7 +255,7 @@
   var btn = document.getElementById('copyEmailBtn');
   if (!btn) return;
 
-  var email = 'jrdnther@gmail.com';
+  var email = 'jrdnether@gmail.com';
 
   btn.addEventListener('click', function () {
     navigator.clipboard.writeText(email).then(function () {
@@ -279,25 +279,3 @@
     });
   });
 })();
-
-// ═══════════════════════════════════
-// CONTACT FORM — basic Formspree handler
-// (Formspree setup: replace YOUR_FORM_ID in index.html
-//  with the real endpoint from formspree.io)
-// ═══════════════════════════════════
-(function initContactForm() {
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', function (e) {
-    var action = form.getAttribute('action');
-    // don't submit if the formspree ID hasn't been replaced yet
-    if (action.indexOf('YOUR_FORM_ID') !== -1) {
-      e.preventDefault();
-      alert('Contact form not configured yet. Please email me directly at jrdnther@gmail.com');
-      return;
-    }
-    // otherwise let Formspree handle the POST normally
-  });
-})();
-

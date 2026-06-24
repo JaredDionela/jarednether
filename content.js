@@ -7,7 +7,7 @@ const siteContent = {
   meta: {
     name: "Jared Nether D. Dionela",
     shortName: "JD",
-    email: "jrdnther@gmail.com",
+    email: "jrdnether@gmail.com",
     phone: "+63 931 154 7171",
     github: "https://github.com/JaredDionela",
     linkedin: "https://www.linkedin.com/in/jared-nether-2209ab2bb/",
