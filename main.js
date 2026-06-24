@@ -279,3 +279,49 @@
     });
   });
 })();
+
+// ═══════════════════════════════════
+// CONTACT FORM AJAX SUBMIT
+// ═══════════════════════════════════
+(function initContactForm() {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        btn.textContent = 'Message Sent!';
+        form.reset();
+      } else {
+        btn.textContent = 'Error sending message';
+      }
+      setTimeout(function() {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 3000);
+    })
+    .catch(function(error) {
+      btn.textContent = 'Error sending message';
+      setTimeout(function() {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 3000);
+    });
+  });
+})();
