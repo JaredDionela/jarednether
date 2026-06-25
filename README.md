@@ -1,7 +1,7 @@
-# Jared Nether D. Dionela — Portfolio
+# Jared Nether D. Dionela
 
 Welcome to the personal portfolio site of Jared Nether D. Dionela, built with vanilla HTML, CSS, and JavaScript.  
-This project showcases my background in Enterprise Database Management, SAP/ERP reporting, and full-stack development, using a sleek charcoal and taupe bento-grid design.
+This project showcases my background in Enterprise Database Management, SAP/ERP reporting, and full-stack development.
 
 ---
 
