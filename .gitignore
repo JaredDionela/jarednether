@@ -1,0 +1,7 @@
+# Agent and IDE configurations
+.agent/
+agents/
+
+# Instruction and context files
+instructions*.md
+resume_guide_jared.md
