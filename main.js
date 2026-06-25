@@ -206,25 +206,77 @@
   function renderCards(filter) {
     grid.innerHTML = '';
 
+    if (filter === 'All') {
+      var anchor = document.createElement('div');
+      anchor.className = 'project-card layout-anchor span-2-col span-2-row';
+      anchor.innerHTML = '<p class="section-label mono" style="margin-bottom: 24px; color: var(--accent-muted);">// portfolio</p>' +
+        '<h2 class="section-title" style="margin-bottom: 24px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.03em;">All Creative Works,<br>Selected projects.</h2>' +
+        '<p class="project-description" style="max-width: 320px; font-size: 1.1rem; line-height: 1.6;">A collection of my latest work focusing on backend systems, data pipelines, and intelligent integrations.</p>';
+      grid.appendChild(anchor);
+    }
+
     projects.forEach(function (project) {
       // filter logic
       if (filter !== 'All' && project.tags.indexOf(filter) === -1) return;
 
       var card = document.createElement('div');
-      card.className = 'project-card' + (project.featured ? ' featured' : '');
+      var layoutClass = '';
+      if (project.layout === 'flagship') layoutClass = ' layout-flagship span-2-col span-2-row';
+      else if (project.layout === 'terminal') layoutClass = ' layout-terminal span-2-col';
+      else if (project.layout === 'ai') layoutClass = ' layout-ai span-2-row';
+      else if (project.layout === 'tall') layoutClass = ' layout-tall span-2-row';
+      else if (project.layout === 'wide') layoutClass = ' layout-wide span-2-col';
+      else layoutClass = ' layout-square';
+
+      card.className = 'project-card' + layoutClass;
 
       var linksHTML = '';
       if (project.github || project.live) {
         var linkItems = '';
         if (project.github) {
           linkItems += '<a href="' + project.github + '" class="project-link" target="_blank" rel="noopener">' + githubIcon + ' GitHub</a>';
-          // TODO: Replace # placeholder links with real URLs
         }
         if (project.live) {
           linkItems += '<a href="' + project.live + '" class="project-link" target="_blank" rel="noopener">' + externalIcon + ' Live</a>';
-          // TODO: Replace # placeholder links with real URLs
         }
         linksHTML = '<div class="project-links">' + linkItems + '</div>';
+      }
+
+      var customContent = '';
+      if (project.layout === 'flagship') {
+        customContent = '<div class="custom-card-content flagship-schema mono">' +
+          '// SUPABASE SCHEMA\n' +
+          'Table users {\n' +
+          '  id uuid PK\n' +
+          '  email text\n' +
+          '  role varchar\n' +
+          '}\n' +
+          'Table orders {\n' +
+          '  id uuid PK\n' +
+          '  user_id uuid FK\n' +
+          '  status text\n' +
+          '}' +
+          '</div>';
+      } else if (project.layout === 'terminal') {
+        customContent = '<div class="custom-card-content terminal-ui mono">' +
+          '<div class="terminal-header"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>' +
+          '<div class="terminal-body">' +
+          '> Server starting...\n' +
+          '> Loading configurations...\n' +
+          '> [Kotlin/Ktor] Ready on port 8080\n' +
+          '> [React] Client connected\n' +
+          '</div>' +
+          '</div>';
+      } else if (project.layout === 'ai') {
+        customContent = '<div class="custom-card-content ai-payload mono">' +
+          '{\n' +
+          '  "model": "gemini-1.5-pro",\n' +
+          '  "messages": [\n' +
+          '    {"role": "user", "content": "..."}\n' +
+          '  ],\n' +
+          '  "temperature": 0.2\n' +
+          '}' +
+          '</div>';
       }
 
       card.innerHTML =
@@ -233,6 +285,7 @@
           '<span class="project-status mono">' + project.status + '</span>' +
         '</div>' +
         '<p class="project-description">' + project.description + '</p>' +
+        customContent +
         '<div class="project-tags">' +
           project.tags.map(function (t) {
             return '<span class="project-tag mono">' + t + '</span>';

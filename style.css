@@ -258,8 +258,37 @@ img { max-width: 100%; display: block; }
   z-index: 1;
 }
 
+.hero-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .hero-content {
   max-width: 640px;
+  position: relative;
+  z-index: 2; /* Sits above the portrait image */
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: -60px; /* Playfully hangs slightly off the bottom */
+  z-index: 1;
+  max-width: 50%;
+  height: 80vh; /* Takes up significant vertical space */
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  opacity: 0;
+  animation: hero-enter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+}
+
+.hero-image-wrapper img {
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
 }
 
 /* staggered entrance — each child fades in */
@@ -1186,4 +1215,94 @@ img { max-width: 100%; display: block; }
     padding: 5px 10px;
   }
 }
+
+/* ═══════════════════════════════════
+   BENTO MASONRY & CUSTOM LAYOUTS
+   ═══════════════════════════════════ */
+
+/* Utilities */
+.span-2-row { grid-row: span 2; }
+.span-2-col { grid-column: span 2; }
+
+/* Grayscale Image Reveal */
+.img-grayscale-reveal {
+  filter: grayscale(100%) opacity(0.8);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-grayscale-reveal:hover,
+.hero-image-wrapper:hover .img-grayscale-reveal {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.02);
+}
+
+/* Custom Card Contents */
+.custom-card-content {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-rest);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: var(--text-muted);
+}
+
+.layout-flagship .custom-card-content {
+  color: var(--accent-muted);
+  font-size: 14px;
+}
+
+.terminal-ui {
+  background: #151515;
+  border-color: #2b2b2b;
+}
+
+.terminal-header {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #2b2b2b;
+  padding-bottom: 8px;
+}
+
+.terminal-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4a4a4a;
+}
+
+.terminal-header .dot:nth-child(1) { background: #ff5f56; }
+.terminal-header .dot:nth-child(2) { background: #ffbd2e; }
+.terminal-header .dot:nth-child(3) { background: #27c93f; }
+
+.terminal-body {
+  color: #00ff00;
+  opacity: 0.8;
+}
+
+.ai-payload {
+  color: #d19a66; /* distinct JSON key color */
+}
+
+/* Media Query override for mobile masonry */
+@media (max-width: 768px) {
+  .span-2-col, .span-2-row {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  
+  .hero-image-wrapper {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 32px;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
 
