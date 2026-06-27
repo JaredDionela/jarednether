@@ -2,45 +2,7 @@
 // keeping it simple: no libraries, no frameworks, just vanilla JS
 // each feature is wrapped in an IIFE so they don't leak globals
 
-// ═══════════════════════════════════
-// TYPEWRITER EFFECT
-// cycles through the roles array from content.js
-// ═══════════════════════════════════
-(function initTypewriter() {
-  var el = document.getElementById('typewriterText');
-  if (!el || !siteContent || !siteContent.hero) return;
 
-  var roles = siteContent.hero.roles;
-  var roleIndex = 0;
-  var charIndex = 0;
-  var isDeleting = false;
-
-  function tick() {
-    var current = roles[roleIndex];
-    var displayed = current.substring(0, charIndex);
-
-    el.textContent = '> ' + displayed;
-
-    var delay = isDeleting ? 35 : 70;
-
-    if (!isDeleting && charIndex >= current.length) {
-      // pause at the end of a word before deleting
-      delay = 2200;
-      isDeleting = true;
-    } else if (isDeleting && charIndex <= 0) {
-      // move to next role
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      delay = 400;
-    }
-
-    charIndex += isDeleting ? -1 : 1;
-    setTimeout(tick, delay);
-  }
-
-  // small initial delay so the hero animation finishes first
-  setTimeout(tick, 800);
-})();
 
 // ═══════════════════════════════════
 // DARK / LIGHT MODE TOGGLE
@@ -73,6 +35,13 @@
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateIcon();
+  });
+
+  // keyboard shortcut 't' to toggle
+  document.addEventListener('keydown', function(e) {
+    if (e.key.toLowerCase() === 't' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      toggle.click();
+    }
   });
 })();
 
@@ -154,6 +123,52 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   elements.forEach(function (el) { observer.observe(el); });
+})();
+
+// ═══════════════════════════════════
+// KEYBOARD NAVIGATION
+// J / K to scroll sections
+// ═══════════════════════════════════
+(function initKeyboardNav() {
+  var sections = document.querySelectorAll('.section, #hero');
+  if (!sections.length) return;
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    var key = e.key.toLowerCase();
+    if (key === 'j' || key === 'k') {
+      var headerOffset = 80;
+      var currentIndex = -1;
+      
+      // Find current section based on scroll
+      for (var i = 0; i < sections.length; i++) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top >= -10 && rect.top <= window.innerHeight / 2) {
+          currentIndex = i;
+          break;
+        } else if (rect.top < -10) {
+          currentIndex = i; 
+        }
+      }
+      
+      var nextIndex = currentIndex;
+      if (key === 'j' && currentIndex < sections.length - 1) {
+        nextIndex++;
+      } else if (key === 'k' && currentIndex > 0) {
+        nextIndex--;
+      }
+      
+      if (nextIndex !== currentIndex && nextIndex >= 0 && nextIndex < sections.length) {
+        var elementPosition = sections[nextIndex].getBoundingClientRect().top;
+        var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
 })();
 
 // ═══════════════════════════════════
