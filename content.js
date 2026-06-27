@@ -29,7 +29,7 @@ const siteContent = {
     {
       id: "enterprise-backend",
       title: "Enterprise Backend Deep-Dive",
-      description: "A comprehensive backend/API project exploring order processing, internal reporting, or database migration patterns. This is the flagship piece — demonstrating end-to-end enterprise system design, from schema to deployment.",
+      description: "A comprehensive backend and API project exploring order processing, internal reporting, and database migration patterns. This flagship piece demonstrates end-to-end enterprise system design from initial schema planning to final deployment.",
       tags: ["Backend", "API", "SQL", "Oracle", "PostgreSQL"],
       github: "#",
       live: null,
@@ -40,7 +40,7 @@ const siteContent = {
     {
       id: "sap-crystal-reports",
       title: "SAP Crystal Reports Dashboard",
-      description: "Built 10+ automated Crystal Reports integrated with SAP Business One for billing, collections, and financial tracking across Operations and Accounting departments at RCD Land Inc.",
+      description: "I built over 10 automated Crystal Reports integrated with SAP Business One to handle billing, collections, and financial tracking for the Operations and Accounting departments at RCD Land Inc.",
       tags: ["SAP B1", "Crystal Reports", "SQL", "ERP"],
       github: "#",
       live: null,
@@ -51,7 +51,7 @@ const siteContent = {
     {
       id: "sql-workflow-automation",
       title: "SQL Workflow Automation",
-      description: "Designed and optimized SQL queries against the SAP B1 database to automate previously manual departmental workflows, reducing reliance on spreadsheets and improving reporting accuracy.",
+      description: "I designed and optimized SQL queries against the SAP B1 database to automate manual workflows. This reduced the company's reliance on fragile spreadsheets and improved overall reporting accuracy.",
       tags: ["SQL", "SAP B1", "Backend", "Automation"],
       github: "#",
       live: null,
@@ -62,7 +62,7 @@ const siteContent = {
     {
       id: "inventory-management",
       title: "Inventory Management System",
-      description: "Full-stack inventory tracking application built with React and Supabase, featuring real-time stock updates, role-based access control, and PostgreSQL-backed data persistence.",
+      description: "I built a full-stack inventory tracking application using React and Supabase. It features real-time stock updates, role-based access control, and reliable data persistence backed by PostgreSQL.",
       tags: ["React", "Supabase", "TypeScript", "PostgreSQL"],
       github: "#",
       live: "#",
