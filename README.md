@@ -2,11 +2,9 @@
 
 **Enterprise Database Management · SAP/ERP Reporting · Full-Stack Development**
 
-[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-000000?style=for-the-badge&logo=vercel)](https://your-portfolio-link-here.com) 
+[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-000000?style=for-the-badge&logo=vercel)](https://jareddionela.vercel.app/) 
 [![Resume](https://img.shields.io/badge/View-Resume-000000?style=for-the-badge&logo=read-the-docs)](Resume-Jared%20Nether%20D.%20Dionela.pdf)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-
-This is the source code for my personal portfolio. I built it without a framework to keep things fast, maintainable, and straightforward. 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jared-nether-2209ab2bb/)
 
 ## Technical Details
 
