@@ -452,15 +452,24 @@
   var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
   form.addEventListener('submit', function (e) {
-    // If running locally without a server, let standard form submission take over
-    if (window.location.protocol === 'file:') {
-      return true;
-    }
-    
     e.preventDefault();
-    
+
     var btn = form.querySelector('button[type="submit"]');
     var originalHTML = btn.innerHTML;
+
+    // If running locally without a server, FormSubmit and browsers often block the request.
+    // Fallback to opening the default mail app.
+    if (window.location.protocol === 'file:') {
+      var msg = form.querySelector('#contactMessage').value;
+      var name = form.querySelector('#contactName').value;
+      window.location.href = 'mailto:jrdnether@gmail.com?subject=Portfolio Contact from ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(msg);
+      
+      btn.innerHTML = checkIcon + ' Opening Mail App...';
+      setTimeout(function() { btn.innerHTML = originalHTML; form.reset(); }, 3500);
+      return;
+    }
+
+
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
