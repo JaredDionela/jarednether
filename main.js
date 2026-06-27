@@ -259,9 +259,64 @@
       if (filter !== 'All' && project.tags.indexOf(filter) === -1) return;
 
       var card = document.createElement('div');
+      
+      if (project.layout === 'flagship') {
+        card.className = 'project-card layout-flagship span-2-col span-2-row';
+        card.style.animation = 'hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+        card.style.animationDelay = (count * 50) + 'ms';
+        card.style.opacity = '0';
+        
+        var customContent = '<div class="custom-card-content flagship-schema mono" style="flex: 1; display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 250px;">' +
+          '// SUPABASE SCHEMA\n' +
+          'Table users {\n' +
+          '  id uuid PK\n' +
+          '  email text\n' +
+          '  role varchar\n' +
+          '}\n' +
+          'Table orders {\n' +
+          '  id uuid PK\n' +
+          '  user_id uuid FK\n' +
+          '  status text\n' +
+          '}' +
+          '</div>';
+
+        var linksHTML = '<div class="project-links" style="margin-top: 24px;">' + 
+            '<button class="btn btn-primary" id="viewArchBtn">View Architecture</button>' +
+            '</div>';
+
+        card.innerHTML = 
+          '<div class="flagship-text" style="flex: 1;">' +
+            '<p class="section-label mono" style="margin-bottom: 12px; color: var(--accent-brand);">// FLAGSHIP PROJECT</p>' +
+            '<h3 class="project-title" style="font-size: clamp(32px, 4vw, 42px); line-height: 1.1; margin-bottom: 16px;">' + project.title + '</h3>' +
+            '<p class="project-description" style="font-size: 16px; margin-bottom: 24px;">' + project.description + '</p>' +
+            '<div class="project-tags">' +
+              project.tags.map(function (t) {
+                return '<span class="project-tag mono">' + t + '</span>';
+              }).join('') +
+            '</div>' +
+            linksHTML +
+          '</div>' +
+          customContent;
+        
+        grid.appendChild(card);
+        count++;
+
+        // Attach event listener for the architecture modal
+        setTimeout(function() {
+          var btn = document.getElementById('viewArchBtn');
+          var modal = document.getElementById('archModal');
+          if(btn && modal) {
+            btn.addEventListener('click', function() {
+              modal.showModal();
+            });
+          }
+        }, 100);
+        
+        return; // Skip the rest of the generic card render for this flagship
+      }
+
       var layoutClass = '';
-      if (project.layout === 'flagship') layoutClass = ' layout-flagship span-2-col span-2-row';
-      else if (project.layout === 'terminal') layoutClass = ' layout-terminal span-2-col';
+      if (project.layout === 'terminal') layoutClass = ' layout-terminal span-2-col';
       else if (project.layout === 'ai') layoutClass = ' layout-ai span-2-row';
       else if (project.layout === 'tall') layoutClass = ' layout-tall span-2-row';
       else if (project.layout === 'wide') layoutClass = ' layout-wide span-2-col';
@@ -393,7 +448,149 @@
 (function initContactForm() {
   var form = document.getElementById('contactForm');
   if (!form) return;
+// ═══════════════════════════════════
+// MAGNETIC 3D HOVER
+// ═══════════════════════════════════
+(function initMagneticHover() {
+  function applyMagneticEffect() {
+    // Only apply to cards that haven't been initialized
+    var cards = document.querySelectorAll('.bento-card:not([data-magnetic-init]), .project-card:not([data-magnetic-init]), .personality-card:not([data-magnetic-init]), .timeline-card:not([data-magnetic-init])');
+    
+    cards.forEach(function(card) {
+      card.dataset.magneticInit = "true";
+      
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left; 
+        var y = e.clientY - rect.top;  
+        
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        
+        var rotateX = ((y - centerY) / centerY) * -4; 
+        var rotateY = ((x - centerX) / centerX) * 4;
+        
+        card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+        card.style.transition = 'transform 0.1s ease';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      });
+    });
+  }
 
+  applyMagneticEffect();
+  
+  var observer = new MutationObserver(function(mutations) {
+    applyMagneticEffect();
+  });
+  
+  var grid = document.getElementById('projectsGrid');
+  if (grid) { observer.observe(grid, { childList: true }); }
+})();
+
+// ═══════════════════════════════════
+// TERMINAL OVERLAY LOGIC
+// ═══════════════════════════════════
+(function initTerminalOverlay() {
+  var overlay = document.getElementById('terminalOverlay');
+  var input = document.getElementById('terminalInput');
+  var output = document.getElementById('terminalOutput');
+  var closeBtn = document.getElementById('terminalClose');
+  var toggleBtn = document.getElementById('terminalToggleBtn');
+  if (!overlay || !input || !output) return;
+
+  var isOpen = false;
+
+  function toggleTerminal() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      overlay.classList.add('active');
+      setTimeout(function() { input.focus(); }, 100);
+    } else {
+      overlay.classList.remove('active');
+    }
+  }
+
+  // Backtick toggle
+  document.addEventListener('keydown', function(e) {
+    if (e.key === '`' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      toggleTerminal();
+    } else if (e.key === 'Escape' && isOpen) {
+      toggleTerminal();
+    }
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', toggleTerminal);
+  if (toggleBtn) toggleBtn.addEventListener('click', toggleTerminal);
+
+  var commands = {
+    'help': 'Available commands: help, whoami, clear, exit, skills, contact',
+    'whoami': 'Jared Dionela. Enterprise Database Developer & Full-Stack Engineer.',
+    'skills': 'SQL, PostgreSQL, Oracle DB, SAP B1, React, Supabase',
+    'contact': 'Email: jrdnether@gmail.com',
+  };
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var val = input.value.trim().toLowerCase();
+      var response = '';
+      
+      if (val === 'clear') {
+        output.innerHTML = '';
+        input.value = '';
+        return;
+      } else if (val === 'exit') {
+        toggleTerminal();
+        input.value = '';
+        return;
+      } else if (val === '') {
+        response = '';
+      } else if (commands[val]) {
+        response = commands[val];
+      } else {
+        response = 'Command not found: ' + val + '. Type <span class="terminal-highlight">help</span>.';
+      }
+
+      var line = document.createElement('p');
+      line.innerHTML = '<span class="terminal-prompt">$&nbsp;</span>' + val;
+      output.appendChild(line);
+
+      if (response) {
+        var respLine = document.createElement('p');
+        respLine.innerHTML = response;
+        output.appendChild(respLine);
+      }
+
+      input.value = '';
+      output.scrollTop = output.scrollHeight;
+    }
+  });
+})();
+
+// ═══════════════════════════════════
+// ARCHITECTURE MODAL LOGIC
+// ═══════════════════════════════════
+(function initArchModal() {
+  var modal = document.getElementById('archModal');
+  var closeBtn = document.getElementById('modalClose');
+  if (!modal || !closeBtn) return;
+
+  closeBtn.addEventListener('click', function() {
+    modal.close();
+  });
+
+  // Close when clicking outside dialog
+  modal.addEventListener('click', function(e) {
+    var rect = modal.getBoundingClientRect();
+    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+      modal.close();
+    }
+  });
+})();
   var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
   form.addEventListener('submit', function (e) {

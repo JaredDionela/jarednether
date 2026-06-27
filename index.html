@@ -429,6 +429,70 @@
   </section>
 
   <!-- ═══════════════════════════════════
+       TERMINAL HINT BUTTON
+       ═══════════════════════════════════ -->
+  <button id="terminalToggleBtn" class="terminal-toggle-btn reveal" aria-label="Open Terminal">
+    <span class="keyboard-key">`</span>
+    <span>Terminal</span>
+  </button>
+
+  <!-- ═══════════════════════════════════
+       TERMINAL OVERLAY
+       ═══════════════════════════════════ -->
+  <div class="terminal-overlay" id="terminalOverlay" aria-hidden="true">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="terminal-title">jared@portfolio:~</div>
+        <button class="terminal-close" id="terminalClose" aria-label="Close terminal">&times;</button>
+      </div>
+      <div class="terminal-body" id="terminalBody">
+        <div class="terminal-output" id="terminalOutput">
+          <p>Welcome to Jared's Portfolio Terminal.</p>
+          <p>Type <span class="terminal-highlight">help</span> to see available commands.</p>
+        </div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt">$&nbsp;</span>
+          <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ARCHITECTURE MODAL
+       ═══════════════════════════════════ -->
+  <dialog class="arch-modal" id="archModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">System Architecture: Enterprise Backend Deep-Dive</h3>
+        <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="arch-diagram">
+          <div class="arch-node client-node">
+            <div class="node-title">React Client</div>
+            <div class="node-desc">Vite, Tailwind</div>
+          </div>
+          <div class="arch-arrow">→ REST API →</div>
+          <div class="arch-node server-node">
+            <div class="node-title">Backend API</div>
+            <div class="node-desc">Ktor / Node.js</div>
+          </div>
+          <div class="arch-arrow">→ JDBC →</div>
+          <div class="arch-node db-node">
+            <div class="node-title">Database Cluster</div>
+            <div class="node-desc">PostgreSQL / Oracle</div>
+          </div>
+        </div>
+        <p class="modal-text">This architecture ensures high availability, handles automated data migrations, and provides a strict type-safe contract between the client and server. The database tier includes row-level security and automated materialized view updates for complex reporting queries.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ═══════════════════════════════════
        FOOTER
        ═══════════════════════════════════ -->
   <footer class="footer">
