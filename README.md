@@ -1,44 +1,38 @@
 # Jared Nether D. Dionela
 
-Welcome to the personal portfolio site of Jared Nether D. Dionela, built with vanilla HTML, CSS, and JavaScript.  
-This project showcases my background in Enterprise Database Management, SAP/ERP reporting, and full-stack development.
+**Enterprise Database Management · SAP/ERP Reporting · Full-Stack Development**
 
----
+[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-000000?style=for-the-badge&logo=vercel)](https://your-portfolio-link-here.com) 
+[![Resume](https://img.shields.io/badge/View-Resume-000000?style=for-the-badge&logo=read-the-docs)](Resume-Jared%20Nether%20D.%20Dionela.pdf)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
 
-## Overview
+This is the source code for my personal portfolio. I built it without a framework to keep things fast, maintainable, and straightforward. 
 
-- **Dynamic Content**: Project cards and metadata are effortlessly managed via `content.js` without directly editing HTML structure.
-- **Bento-Grid Layout**: A responsive, modular layout powered by modern CSS Grid.
-- **Scroll Animations**: Smooth reveal animations using the native IntersectionObserver API.
-- **Theming**: Integrated dark and light mode toggle with state persistence via `localStorage`.
-- **Contact Integration**: An AJAX-powered contact form that submits seamlessly in the background via FormSubmit.
+## Technical Details
 
-## Tech Stack
+The site runs on plain HTML, CSS, and JavaScript. The goal was to build a clean bento-grid layout while keeping the architecture as light as possible.
 
-- **HTML/CSS/JS** — Clean vanilla code with no frameworks or build tools required.
-- **CSS Grid & Flexbox** — Modern, responsive layouts.
-- **IntersectionObserver** — For performant scroll animations.
-- **Fetch API** — For background form submissions.
+- **Content Management:** Project and experience data is stored in `content.js` and injected dynamically. This keeps the HTML structure clean and makes updating the portfolio trivial.
+- **Layout:** Built on CSS Grid and Flexbox. 
+- **Animations:** Scroll reveals use the native `IntersectionObserver` API instead of an external library to save bandwidth.
+- **Theming:** A built-in dark/light toggle that persists user preference via `localStorage`.
+- **Forms:** The contact form uses the Fetch API to submit asynchronously without page reloads.
 
----
+## Running Locally
 
-## File Structure
+Because there are no build steps or dependencies, you can serve the directory directly. For example, using Python:
 
+```bash
+git clone https://github.com/your-username/portfolio.git
+cd portfolio
+python -m http.server 8000
 ```
-portfolio/
-├── index.html          ← main page
-├── style.css           ← design system (charcoal + taupe bento)
-├── main.js             ← interactive features (animations, theme, form handling)
-├── content.js          ← data-driven content (projects array, hero roles)
-├── 404.html            ← custom 404 page
-├── instructions.md     ← setup, deployment, and customization guide
-└── README.md           ← you are here
-```
+Then open `http://localhost:8000`.
 
----
+## Repository Layout
 
-*For detailed instructions on how to set up, customize, or deploy this project locally, please see the [instructions.md](instructions.md) guide.*
-
----
-
-Built by Jared Nether D. Dionela · 2026
+- `index.html` — The main page structure
+- `style.css` — The design system and responsive grid
+- `main.js` — Interaction logic (theme toggle, animations, form handling)
+- `content.js` — The data source for portfolio projects and metadata
+- `instructions.md` — Setup and customization notes
