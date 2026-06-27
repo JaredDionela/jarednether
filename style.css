@@ -383,11 +383,13 @@ img {
 @keyframes hero-enter {
   from {
     opacity: 0;
+    filter: blur(8px);
     transform: translateY(20px);
   }
 
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
   }
 }
@@ -435,7 +437,7 @@ img {
   font-family: 'Manrope', sans-serif;
   cursor: pointer;
   border: none;
-  transition: all 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-primary {
@@ -446,6 +448,12 @@ img {
 .btn-primary:hover {
   background: var(--accent-brand-hover);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 90, 61, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(197, 90, 61, 0.15);
 }
 
 .btn-ghost {
@@ -457,6 +465,18 @@ img {
 .btn-ghost:hover {
   border-color: var(--accent-muted);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.btn-ghost:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px var(--shadow-hover);
+}
+
+.btn-success {
+  background: #348e58 !important;
+  color: #fff !important;
+  border-color: #348e58 !important;
 }
 
 /* ═══════════════════════════════════
@@ -1089,13 +1109,20 @@ img {
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
 .copy-email-btn:hover {
   border-color: var(--accent-muted);
   color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.copy-email-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .contact-socials {
@@ -1172,13 +1199,34 @@ img {
    ═══════════════════════════════════ */
 .reveal {
   opacity: 0;
+  filter: blur(4px);
   transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
 }
 
 .reveal.visible {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
+}
+
+/* ═══════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ═══════════════════════════════════

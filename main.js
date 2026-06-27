@@ -5,6 +5,16 @@
 
 
 // ═══════════════════════════════════
+// CONSOLE GREETING EASTER EGG
+// ═══════════════════════════════════
+(function initConsoleGreeting() {
+  var style1 = 'font-size: 14px; font-weight: bold; color: #C55A3D; font-family: monospace; padding: 4px 0;';
+  var style2 = 'font-size: 12px; color: inherit; font-family: monospace; line-height: 1.6;';
+  console.log('%c> CONNECTION ESTABLISHED', style1);
+  console.log('%cLike what you see under the hood?\nI\'m currently open to roles in database administration and full-stack development.\nLet\'s talk: jrdnether@gmail.com', style2);
+})();
+
+// ═══════════════════════════════════
 // DARK / LIGHT MODE TOGGLE
 // persisted to localStorage so it survives reload
 // ═══════════════════════════════════
@@ -114,12 +124,21 @@
   if (!elements.length) return;
 
   var observer = new IntersectionObserver(function (entries) {
+    var delayCount = 0;
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        // Add dynamic stagger based on how many elements enter at once
+        entry.target.style.setProperty('--i', delayCount);
+        delayCount++;
+        
+        requestAnimationFrame(function() {
+          entry.target.classList.add('visible');
+        });
         observer.unobserve(entry.target);
       }
     });
+    // Reset delay count after processing current batch
+    setTimeout(function() { delayCount = 0; }, 50);
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   elements.forEach(function (el) { observer.observe(el); });
@@ -220,14 +239,19 @@
 
   function renderCards(filter) {
     grid.innerHTML = '';
+    var count = 0;
 
     if (filter === 'All') {
       var anchor = document.createElement('div');
       anchor.className = 'project-card layout-anchor span-2-col span-2-row';
+      anchor.style.animation = 'hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      anchor.style.animationDelay = (count * 50) + 'ms';
+      anchor.style.opacity = '0';
       anchor.innerHTML = '<p class="section-label mono" style="margin-bottom: 24px; color: var(--accent-muted);">// portfolio</p>' +
         '<h2 class="section-title" style="margin-bottom: 24px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.03em;">All Creative Works,<br>Selected projects.</h2>' +
         '<p class="project-description" style="max-width: 320px; font-size: 1.1rem; line-height: 1.6;">A collection of my latest work focusing on backend systems, data pipelines, and intelligent integrations.</p>';
       grid.appendChild(anchor);
+      count++;
     }
 
     projects.forEach(function (project) {
@@ -244,6 +268,10 @@
       else layoutClass = ' layout-square';
 
       card.className = 'project-card' + layoutClass;
+      card.style.animation = 'hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      card.style.animationDelay = (count * 50) + 'ms';
+      card.style.opacity = '0';
+      count++;
 
       var linksHTML = '';
       if (project.github || project.live) {
@@ -324,14 +352,19 @@
   if (!btn) return;
 
   var email = 'jrdnether@gmail.com';
+  var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="margin-right: 4px; vertical-align: text-bottom;"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
   btn.addEventListener('click', function () {
     navigator.clipboard.writeText(email).then(function () {
-      btn.textContent = 'Copied!';
-      // reset after 2 seconds so the button doesn't stay stuck
+      btn.innerHTML = checkIcon + 'Copied!';
+      btn.style.color = 'var(--text-primary)';
+      btn.style.borderColor = 'var(--accent-muted)';
+      // reset after 2.5 seconds so the button doesn't stay stuck
       setTimeout(function () {
         btn.textContent = 'Copy';
-      }, 2000);
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 2500);
     }).catch(function () {
       // fallback for older browsers
       var textarea = document.createElement('textarea');
@@ -342,8 +375,14 @@
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      btn.textContent = 'Copied!';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+      btn.innerHTML = checkIcon + 'Copied!';
+      btn.style.color = 'var(--text-primary)';
+      btn.style.borderColor = 'var(--accent-muted)';
+      setTimeout(function () { 
+        btn.textContent = 'Copy'; 
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 2500);
     });
   });
 })();
@@ -355,11 +394,13 @@
   var form = document.getElementById('contactForm');
   if (!form) return;
 
+  var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     
     var btn = form.querySelector('button[type="submit"]');
-    var originalText = btn.textContent;
+    var originalHTML = btn.innerHTML;
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
@@ -374,22 +415,24 @@
     })
     .then(function(response) {
       if (response.ok) {
-        btn.textContent = 'Message Sent!';
+        btn.innerHTML = checkIcon + ' Message Sent';
+        btn.classList.add('btn-success');
         form.reset();
       } else {
         btn.textContent = 'Error sending message';
       }
       setTimeout(function() {
-        btn.textContent = originalText;
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('btn-success');
         btn.disabled = false;
-      }, 3000);
+      }, 3500);
     })
     .catch(function(error) {
       btn.textContent = 'Error sending message';
       setTimeout(function() {
-        btn.textContent = originalText;
+        btn.innerHTML = originalHTML;
         btn.disabled = false;
-      }, 3000);
+      }, 3500);
     });
   });
 })();
