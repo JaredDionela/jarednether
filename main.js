@@ -49,7 +49,7 @@
 
   // keyboard shortcut 't' to toggle
   document.addEventListener('keydown', function(e) {
-    if (e.key.toLowerCase() === 't' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+    if (e.key && e.key.toLowerCase() === 't' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
       toggle.click();
     }
   });
@@ -448,12 +448,60 @@
 (function initContactForm() {
   var form = document.getElementById('contactForm');
   if (!form) return;
+
+  var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+  form.addEventListener('submit', function (e) {
+    // If running locally without a server, let standard form submission take over
+    if (window.location.protocol === 'file:') {
+      return true;
+    }
+    
+    e.preventDefault();
+    
+    var btn = form.querySelector('button[type="submit"]');
+    var originalHTML = btn.innerHTML;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        btn.innerHTML = checkIcon + ' Message Sent';
+        btn.classList.add('btn-success');
+        form.reset();
+      } else {
+        btn.textContent = 'Error sending message';
+      }
+      setTimeout(function() {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('btn-success');
+        btn.disabled = false;
+      }, 3500);
+    })
+    .catch(function(error) {
+      btn.textContent = 'Error sending message';
+      setTimeout(function() {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      }, 3500);
+    });
+  });
+})();
+
 // ═══════════════════════════════════
 // MAGNETIC 3D HOVER
 // ═══════════════════════════════════
 (function initMagneticHover() {
   function applyMagneticEffect() {
-    // Only apply to cards that haven't been initialized
     var cards = document.querySelectorAll('.bento-card:not([data-magnetic-init]), .project-card:not([data-magnetic-init]), .personality-card:not([data-magnetic-init]), .timeline-card:not([data-magnetic-init])');
     
     cards.forEach(function(card) {
@@ -514,7 +562,6 @@
     }
   }
 
-  // Backtick toggle
   document.addEventListener('keydown', function(e) {
     if (e.key === '`' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
       e.preventDefault();
@@ -583,53 +630,10 @@
     modal.close();
   });
 
-  // Close when clicking outside dialog
   modal.addEventListener('click', function(e) {
     var rect = modal.getBoundingClientRect();
     if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
       modal.close();
     }
-  });
-})();
-  var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    
-    var btn = form.querySelector('button[type="submit"]');
-    var originalHTML = btn.innerHTML;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    var formData = new FormData(form);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        btn.innerHTML = checkIcon + ' Message Sent';
-        btn.classList.add('btn-success');
-        form.reset();
-      } else {
-        btn.textContent = 'Error sending message';
-      }
-      setTimeout(function() {
-        btn.innerHTML = originalHTML;
-        btn.classList.remove('btn-success');
-        btn.disabled = false;
-      }, 3500);
-    })
-    .catch(function(error) {
-      btn.textContent = 'Error sending message';
-      setTimeout(function() {
-        btn.innerHTML = originalHTML;
-        btn.disabled = false;
-      }, 3500);
-    });
   });
 })();
