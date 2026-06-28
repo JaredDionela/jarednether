@@ -12,6 +12,8 @@
   --accent-brand: #C55A3D;
   /* Deep terracotta for distinct, authoritative warmth */
   --accent-brand-hover: #DF6C4C;
+  --text-on-brand: #FFFFFF;
+  --color-success: #348e58;
   --border-rest: rgba(145, 139, 126, 0.15);
 
   /* derived from the base palette */
@@ -45,6 +47,8 @@
   --accent-muted: #7A756C;
   --accent-brand: #B24022;
   --accent-brand-hover: #9E371C;
+  --text-on-brand: #FFFFFF;
+  --color-success: #348e58;
   --border-rest: rgba(145, 139, 126, 0.22);
   --shadow-hover: rgba(145, 139, 126, 0.15);
   --bg-glass: rgba(245, 243, 239, 0.6);
@@ -80,7 +84,7 @@ body {
 
 ::selection {
   background: var(--accent-brand);
-  color: #FFFFFF;
+  color: var(--text-on-brand);
 }
 
 /* ── Faint dot pattern background ── */
@@ -406,7 +410,6 @@ img {
 }
 
 .hero-label {
-  font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   color: var(--accent-muted);
   margin-bottom: 16px;
@@ -453,7 +456,7 @@ img {
 
 .btn-primary {
   background: var(--accent-brand);
-  color: #FFFFFF;
+  color: var(--text-on-brand);
 }
 
 .btn-primary:hover {
@@ -484,10 +487,10 @@ img {
   box-shadow: 0 2px 4px var(--shadow-hover);
 }
 
-.btn-success {
-  background: #348e58 !important;
-  color: #fff !important;
-  border-color: #348e58 !important;
+.btn.btn-success {
+  background: var(--color-success);
+  color: var(--text-on-brand);
+  border-color: var(--color-success);
 }
 
 /* ═══════════════════════════════════
@@ -1033,10 +1036,22 @@ img {
   padding: var(--card-padding);
 }
 
+.contact-form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 32px;
+}
+
+.contact-separator {
+  border: 0;
+  border-top: 1px solid var(--border-rest);
+  margin-bottom: 24px;
 }
 
 .form-group {
@@ -1097,7 +1112,7 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding: 12px;
   border-radius: 8px;
   background: var(--bg-main);
@@ -1855,4 +1870,10 @@ img {
   font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.7;
+}
+
+.hero-subtext {
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-weight: 500;
 }
