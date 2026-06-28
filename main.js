@@ -8,7 +8,7 @@
 // CONSOLE GREETING EASTER EGG
 // ═══════════════════════════════════
 (function initConsoleGreeting() {
-  var style1 = 'font-size: 14px; font-weight: bold; color: #C55A3D; font-family: monospace; padding: 4px 0;';
+  var style1 = 'font-size: 14px; font-weight: bold; color: #9A2B2B; font-family: monospace; padding: 4px 0;';
   var style2 = 'font-size: 12px; color: inherit; font-family: monospace; line-height: 1.6;';
   console.log('%c> CONNECTION ESTABLISHED', style1);
   console.log('%cLike what you see under the hood?\nI\'m currently open to roles in database administration and full-stack development.\nLet\'s talk: jrdnether@gmail.com', style2);

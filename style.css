@@ -9,9 +9,9 @@
   --bg-card: #262626;
   --text-primary: #EBE8E1;
   --accent-muted: #918B7E;
-  --accent-brand: #C55A3D;
-  /* Deep terracotta for distinct, authoritative warmth */
-  --accent-brand-hover: #DF6C4C;
+  --accent-brand: #9A2B2B;
+  /* Deep oxblood for distinct, authoritative elegance */
+  --accent-brand-hover: #BA3838;
   --text-on-brand: #FFFFFF;
   --color-success: #348e58;
   --border-rest: rgba(145, 139, 126, 0.15);
@@ -45,8 +45,8 @@
   --text-secondary: #4A4640;
   --text-muted: #918B7E;
   --accent-muted: #7A756C;
-  --accent-brand: #B24022;
-  --accent-brand-hover: #9E371C;
+  --accent-brand: #7A2222;
+  --accent-brand-hover: #5A1616;
   --text-on-brand: #FFFFFF;
   --color-success: #348e58;
   --border-rest: rgba(145, 139, 126, 0.22);
@@ -207,25 +207,9 @@ img {
   position: relative;
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--accent-brand);
-  transition: width 0.3s ease;
-}
-
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--text-primary);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
 }
 
 .nav-right {
@@ -462,12 +446,12 @@ img {
 .btn-primary:hover {
   background: var(--accent-brand-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(197, 90, 61, 0.25);
+  box-shadow: 0 4px 12px rgba(154, 43, 43, 0.25);
 }
 
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(197, 90, 61, 0.15);
+  box-shadow: 0 2px 4px rgba(154, 43, 43, 0.15);
 }
 
 .btn-ghost {
